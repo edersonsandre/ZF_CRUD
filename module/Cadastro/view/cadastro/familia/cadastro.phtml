@@ -1,0 +1,21 @@
+<?php
+// module/Album/view/album/album/add.phtml:
+
+$title = 'Novo Registro';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(null, array('action' => 'cadastro', 'controller' => 'familia', 'module' => 'cadastro')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('familia'));
+echo $this->formHidden($form->get('fabrica'));
+echo $this->formHidden($form->get('linha'));
+echo $this->formRow($form->get('codigo'));
+echo $this->formRow($form->get('descricao'));
+echo $this->formRow($form->get('ativo'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
