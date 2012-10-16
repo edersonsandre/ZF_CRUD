@@ -1,0 +1,28 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Fabrica';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url(null, array('controller'=>'fabrica','action'=> 'cadastro'));?>" class='btn btn-primary pull-right'>Novo Registro</a>
+</p>
+
+<table class="table"  style="margin-top: 50px;">
+<tr>
+    <th>Código</th>
+    <th>Descrição</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($fabricas as $fabrica) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($fabrica->fabrica);?></td>
+    <td><?php echo $this->escapeHtml($fabrica->nome);?></td>
+    <td>
+        <a href="<?php echo $this->url(null, array('controller'=>'fabrica','action'=> 'cadastro','id' => $this->escapeHtml($fabrica->fabrica)));?>">Edit</a>
+        <a href="<?php echo $this->url(null, array('controller'=>'fabrica','action'=> 'delete','id' => $this->escapeHtml($fabrica->fabrica)));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

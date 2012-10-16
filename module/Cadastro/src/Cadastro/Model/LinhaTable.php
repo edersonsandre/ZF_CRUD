@@ -6,29 +6,34 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
 
-class FamiliaTable extends AbstractTableGateway {
+class LinhaTable extends AbstractTableGateway {
 
-    protected $table = 'tbl_familia';
+    protected $table = 'tbl_linha';
 
     public function __construct(Adapter $adapter) {
         $this->adapter = $adapter;
 
         $this->resultSetPrototype = new ResultSet();
-        $this->resultSetPrototype->setArrayObjectPrototype(new Familia());
+        $this->resultSetPrototype->setArrayObjectPrototype(new Linha());
 
         $this->initialize();
     }
 
     public function fetchAll() {
         $resultSet = $this->select();
-        return $resultSet;
+        return  $resultSet;
+    }
+    
+    public function combo() {
+        $resultSet = $this->select();
+        return  $resultSet;
     }
 
-    public function getFamilia($id) {
+    public function getLinha($id) {
         $id = (int) $id;
 
         $rowset = $this->select(array(
-            'familia' => $id,
+            'linha' => $id,
                 )
         );
 
@@ -41,24 +46,24 @@ class FamiliaTable extends AbstractTableGateway {
         return $row;
     }
 
-    public function saveFamilia(Familia $familia) {
+    public function saveLinha(Linha $linha) {
         $data = array(
-            'familia' => $familia->familia,
-            'fabrica' => $familia->fabrica,
-            'descricao' => $familia->descricao,
-            'codigo' => $familia->codigo,
-            'linha' => $familia->linha,
-            'ativo' => $familia->ativo
+            'linha' => $linha->linha,
+            'fabrica' => $linha->fabrica,
+            'nome' => $linha->nome,
+            'codigo_linha' => $linha->codigo_linha,
+            'marca' => $linha->marca,
+            'ativo' => $linha->ativo
         );
 
-        $id = (int) $familia->familia;
+        $id = (int) $linha->linha;
 
         if ($id == 0) {
             $this->insert($data);
-        } elseif ($this->getFamilia($id)) {
+        } elseif ($this->getLinha($id)) {
             $this->update(
                     $data, array(
-                'familia' => $id,
+                'linha' => $id,
                     )
             );
         } else {
@@ -66,10 +71,10 @@ class FamiliaTable extends AbstractTableGateway {
         }
     }
 
-    public function deleteFamilia($id) {
+    public function deleteLinha($id) {
 
         $this->delete(array(
-            'familia' => $id,
+            'linha' => $id,
         ));
     }
 

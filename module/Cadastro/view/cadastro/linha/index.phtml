@@ -1,0 +1,28 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Linha';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url(null, array('controller'=>'linha','action'=> 'cadastro'));?>" class='btn btn-primary pull-right'>Novo Registro</a>
+</p>
+
+<table class="table"  style="margin-top: 50px;">
+<tr>
+    <th>Código</th>
+    <th>Descrição</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($linhas as $linha) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($linha->codigo_linha);?></td>
+    <td><?php echo $this->escapeHtml($linha->nome);?></td>
+    <td>
+        <a href="<?php echo $this->url(null, array('controller'=>'linha','action'=> 'cadastro','id' => $this->escapeHtml($linha->linha)));?>">Edit</a>
+        <a href="<?php echo $this->url(null, array('controller'=>'linha','action'=> 'delete','id' => $this->escapeHtml($linha->linha)));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

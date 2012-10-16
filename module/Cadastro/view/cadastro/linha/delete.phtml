@@ -1,18 +1,18 @@
 <?php
-// module/Familia/view/familia/familia/delete.phtml:
+// module/Familia/view/linha/linha/delete.phtml:
 
-$title = 'Delete familia';
+$title = 'Delete linha';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
 <p>Are you sure that you want to delete
-    '<?php echo $this->escapeHtml($familia->codigo); ?>' by
-    '<?php echo $this->escapeHtml($familia->descricao); ?>'?
+    '<?php echo $this->escapeHtml($linha->codigo_linha); ?>' by
+    '<?php echo $this->escapeHtml($linha->nome); ?>'?
 </p>
 <?php
 $url = $this->url(null, array(
-    'controller' => 'familia',
+    'controller' => 'linha',
     'action' => 'delete',
     'id' => $this->id,
         )
@@ -20,7 +20,7 @@ $url = $this->url(null, array(
 ?>
 <form action="<?php echo $url; ?>" method="post">
     <div>
-        <input type="hidden" name="familia" value="<?php echo (int) $familia->familia; ?>" />
+        <input type="hidden" name="linha" value="<?php echo (int) $linha->linha; ?>" />
         <input type="submit" name="del" value="Yes" />
         <input type="submit" name="del" value="No" />
     </div>

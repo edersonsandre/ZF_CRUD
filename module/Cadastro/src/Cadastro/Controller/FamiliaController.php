@@ -30,10 +30,10 @@ class FamiliaController extends AbstractActionController {
         $form->get('submit')->setValue(' Gravar ');
 
         $id = (int) $this->params('id', 0);
-        if ($id > 0) {
-            //$familia = $this->getFamiliaTable()->getFamilia($id);
-            //$form->bind($familia);
-            //$form->get('submit')->setAttribute('value', 'Editar');
+        if ($id) {
+            $familia = $this->getFamiliaTable()->getFamilia($id);
+            $form->bind($familia);
+            $form->get('submit')->setAttribute('value', 'Editar');
         }
 
         $request = $this->getRequest();
@@ -55,7 +55,7 @@ class FamiliaController extends AbstractActionController {
     public function deleteAction() {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('familia');
+            return $this->redirect()->toRoute(null, array('controller' => 'familia', 'action' => 'index'));
         }
 
         $request = $this->getRequest();
@@ -63,12 +63,12 @@ class FamiliaController extends AbstractActionController {
             $del = $request->getPost('del', 'No');
 
             if ($del == 'Yes') {
-                $id = (int) $request->getPost('id');
+                $id = (int) $request->getPost('familia');
                 $this->getFamiliaTable()->deleteFamilia($id);
             }
 
             // Redirect to list of familias
-            return $this->redirect()->toRoute('familia');
+            return $this->redirect()->toRoute(null, array('controller' => 'familia', 'action' => 'index'));
         }
 
         return array(

@@ -7,15 +7,12 @@ $this->headTitle($title);
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url(null, array('action' => 'cadastro', 'controller' => 'familia', 'module' => 'cadastro')));
+$form->setAttribute('action', $this->url(null, array('action' => 'cadastro', 'controller' => 'fabrica', 'module' => 'cadastro')));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('familia'));
-echo $this->formRow($form->get('fabrica'));
-echo $this->formRow($form->get('linha'));
-echo $this->formRow($form->get('codigo'));
-echo $this->formRow($form->get('descricao'));
+echo $this->formHidden($form->get('fabrica'));
+echo $this->formRow($form->get('nome'));
 echo $this->formRow($form->get('ativo'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();

@@ -7,23 +7,17 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-class Familia {
+class Fabrica {
 
     protected $inputFilter;
-    public $familia;
     public $fabrica;
-    public $descricao;
-    public $codigo;
-    public $linha;
+    public $nome;
     public $ativo;
 
     public function exchangeArray($data) {
-        $this->familia = (isset($data['familia'])) ? $data['familia'] : null;
         $this->fabrica = (isset($data['fabrica'])) ? $data['fabrica'] : null;
-        $this->descricao = (isset($data['descricao'])) ? $data['descricao'] : null;
-        $this->codigo = (isset($data['codigo'])) ? $data['codigo'] : null;
-        $this->linha = (isset($data['linha'])) ? $data['linha'] : null;
         $this->ativo = (isset($data['ativo'])) ? $data['ativo'] : null;
+        $this->nome = (isset($data['nome'])) ? $data['nome'] : null;
     }
 
     public function getArrayCopy() {
@@ -41,23 +35,6 @@ class Familia {
 
             $inputFilter->add($factory->createInput(array(
                         'name' => 'fabrica',
-                        'required' => true,
-                        'filters' => array(
-                            array('name' => 'Int'),
-                        ),
-                    )));
-
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'familia',
-                        'required' => true,
-                        'filters' => array(
-                            array('name' => 'Int'),
-                        ),
-                    )));
-
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'linha',
-                        'required' => true,
                         'filters' => array(
                             array('name' => 'Int'),
                         ),
@@ -72,7 +49,7 @@ class Familia {
                     )));
 
             $inputFilter->add($factory->createInput(array(
-                        'name' => 'descricao',
+                        'name' => 'nome',
                         'required' => true,
                         'filters' => array(
                             array('name' => 'StripTags'),
@@ -90,24 +67,6 @@ class Familia {
                         ),
                     )));
 
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'codigo',
-                        'required' => true,
-                        'filters' => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                        ),
-                        'validators' => array(
-                            array(
-                                'name' => 'StringLength',
-                                'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min' => 1,
-                                    'max' => 50,
-                                ),
-                            ),
-                        ),
-                    )));
 
             $this->inputFilter = $inputFilter;
         }

@@ -3,26 +3,15 @@
 namespace Cadastro\Form;
 
 use Zend\Form\Form;
-use Cadastro\Model\LinhaTable;
 
-class FamiliaForm extends Form {
-    
-    public function linhas(){
-        //$linha = new LinhaTable('linha');
-//        $_linha->fetchAll();
-        
-        return array(
-            '0' => 'Linha 001'
-        );
-    }
-    
+class LinhaForm extends Form {
+
     public function __construct($name = null) {
-        
-        // we want to ignore the name passed
-        parent::__construct('familia');
+
+        parent::__construct('linha');
         $this->setAttribute('method', 'post');
         $this->add(array(
-            'name' => 'familia',
+            'name' => 'linha',
             'attributes' => array(
                 'type' => 'hidden',
             ),
@@ -34,8 +23,8 @@ class FamiliaForm extends Form {
             'options' => array(
                 'label' => 'Fabrica',
                 'value_options' => array(
-                    '10' => 'Telecontrol'
-                )
+                    '10' => 'Telecontrol',
+                ),
             ),
             'attributes' => array(
                 'required' => 'required'
@@ -43,34 +32,34 @@ class FamiliaForm extends Form {
         ));
 
         $this->add(array(
-            'name' => 'linha',
-            'type' => 'Zend\Form\Element\Select',
-            'options' => array(
-                'label' => 'Linha',
-                'value_options' => $this->linhas()
-            ),
+            'name' => 'nome',
             'attributes' => array(
+                'type' => 'text',
                 'required' => 'required'
-            )
+            ),
+            'options' => array(
+                'label' => 'Nome',
+            ),
         ));
-
+        
         $this->add(array(
-            'name' => 'descricao',
+            'name' => 'codigo_linha',
+            'attributes' => array(
+                'type' => 'text',
+                'required' => 'required'
+            ),
+            'options' => array(
+                'label' => 'Código Linha',
+            ),
+        ));
+        
+        $this->add(array(
+            'name' => 'marca',
             'attributes' => array(
                 'type' => 'text',
             ),
             'options' => array(
-                'label' => 'Descrição',
-                
-            ),
-        ));
-        $this->add(array(
-            'name' => 'codigo',
-            'attributes' => array(
-                'type' => 'text',
-            ),
-            'options' => array(
-                'label' => 'Código',
+                'label' => 'Marca',
             ),
         ));
 

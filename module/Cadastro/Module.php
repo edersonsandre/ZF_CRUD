@@ -13,9 +13,11 @@ namespace Cadastro;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Cadastro\Form\FamiliaForm;
-
 use Cadastro\Model\FamiliaTable;
-
+use Cadastro\Form\LinhaForm;
+use Cadastro\Model\LinhaTable;
+use Cadastro\Form\FabricaForm;
+use Cadastro\Model\FabricaTable;
 
 class Module {
 
@@ -46,6 +48,16 @@ class Module {
                 'Cadastro\Model\FamiliaTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new FamiliaTable($dbAdapter);
+                    return $table;
+                },
+                'Cadastro\Model\LinhaTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new LinhaTable($dbAdapter);
+                    return $table;
+                },
+                'Cadastro\Model\FabricaTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new FabricaTable($dbAdapter);
                     return $table;
                 },
             ),

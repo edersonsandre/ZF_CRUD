@@ -52,11 +52,43 @@ return array(
                     'familia' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action[/:id]]]/',
+                            'route' => '/[:controller][/:action][/:id]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                 'id'     => '[0-9]+',
+                                'id' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Cadastro\Controller',
+                                'controller' => 'Index',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
+                    'linha' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller][/:action][/:id]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Cadastro\Controller',
+                                'controller' => 'Index',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
+                    'fabrica' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller][/:action][/:id]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
                             ),
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Cadastro\Controller',
@@ -87,7 +119,9 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Cadastro\Controller\Index' => 'Cadastro\Controller\IndexController',
-            'Cadastro\Controller\Familia' => 'Cadastro\Controller\FamiliaController'
+            'Cadastro\Controller\Familia' => 'Cadastro\Controller\FamiliaController',
+            'Cadastro\Controller\Linha' => 'Cadastro\Controller\LinhaController',
+            'Cadastro\Controller\Fabrica' => 'Cadastro\Controller\FabricaController'
         ),
     ),
     'view_manager' => array(
